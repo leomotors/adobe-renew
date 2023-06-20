@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "rm screenshot/*.png && playwright test",
+    "start": "rm -f screenshot/*.png && playwright test",
     "lint": "eslint src",
     "format": "eslint src --fix"
   },
