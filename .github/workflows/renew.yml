@@ -33,7 +33,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install Playwright
-        run: npx playwright install-deps chromium
+        run: npx playwright install --with-deps
 
       - name: Run Script
         run: pnpm start
