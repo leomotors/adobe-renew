@@ -1,0 +1,22 @@
+{
+  "name": "adobe-renew",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "rm screenshot/*.png && playwright test",
+    "lint": "eslint src",
+    "format": "eslint src --fix"
+  },
+  "dependencies": {
+    "@playwright/test": "1.35.1",
+    "discord.js": "14.11.0",
+    "dotenv": "16.3.1",
+    "zod": "3.21.4"
+  },
+  "devDependencies": {
+    "@leomotors/config": "0.10.0",
+    "@trivago/prettier-plugin-sort-imports": "4.1.1",
+    "eslint": "8.43.0",
+    "prettier": "2.8.8"
+  }
+}
