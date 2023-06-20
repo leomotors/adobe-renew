@@ -15,6 +15,7 @@ jobs:
       PASSWORD: ${{ secrets.PASSWORD }}
       DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
       CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+      TZ: "Asia/Bangkok"
 
     steps:
       - name: Checkout
