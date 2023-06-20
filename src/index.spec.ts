@@ -43,8 +43,6 @@ test("Automation", async ({ page }) => {
   const targetDay = next7days.getDate();
   const isSameMonth = next7days.getMonth() === today.getMonth();
 
-  // TODO Handle different year
-
   if (!isSameMonth) {
     await page.getByRole("link", { name: "" }).first().click();
   }
