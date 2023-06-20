@@ -18,7 +18,7 @@ test("Automation", async ({ page }) => {
   await page.locator("#Password").fill(env.PASSWORD);
   await page.getByRole("button", { name: " Sign in" }).click();
 
-  await sendMessage(`RUN ${new Date().toLocaleString("th-TH")}`);
+  await sendMessage(`# RUN ${new Date().toLocaleString("th-TH")}`);
 
   // Check Login Success
   await expect(page.getByRole("heading", { name: env.USERNAME })).toBeVisible();
