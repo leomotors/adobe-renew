@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 import { sendImage, sendMessage } from "./discord";
 import { env } from "./env";
+import { addZero } from "./utils";
 
 test.afterEach(async ({ page }, testInfo) => {
   if (testInfo.status !== testInfo.expectedStatus) {
@@ -40,14 +41,14 @@ test("Automation", async ({ page }) => {
   const today = new Date();
   const next7days = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-  const targetDay = next7days.getDate();
+  const targetDay = addZero(next7days.getDate());
   const isSameMonth = next7days.getMonth() === today.getMonth();
 
   if (!isSameMonth) {
     await page.getByRole("link", { name: "" }).first().click();
   }
 
-  await page.getByRole("link", { name: `${targetDay}` }).click();
+  await page.getByRole("link", { name: targetDay }).click();
   await page.getByRole("button", { name: "OK" }).click();
 
   await page.screenshot({ path: "screenshot/3-before-borrow.png" });
