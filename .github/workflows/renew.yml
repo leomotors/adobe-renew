@@ -3,8 +3,8 @@ name: Renew
 on:
   workflow_dispatch:
   schedule:
-    # Every Monday at 18:00
-    - cron: "0 11 * * 1"
+    # Every Tuesday at 0:40 (+7)
+    - cron: "40 17 * * 1"
 
 jobs:
   renew:
