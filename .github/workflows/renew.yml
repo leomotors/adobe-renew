@@ -31,10 +31,10 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --prod --frozen-lockfile
 
       - name: Install Playwright
         run: npx playwright install --with-deps
 
       - name: Run Script
-        run: pnpm start
+        run: pnpm start:prod

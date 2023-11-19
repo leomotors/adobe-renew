@@ -7,10 +7,6 @@ Automatically renew your CU Adobe License
 - Borrow license for you
 - Send screenshot to Discord
 
-## TODO
-
-- Use REST API to send message instead
-
 ## How to use
 
 - Fill in `.env`

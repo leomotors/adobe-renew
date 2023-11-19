@@ -3,19 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "rm -f screenshot/*.png && playwright test",
+    "start": "dotenv -v DEV=frfr -- playwright test",
+    "start:prod": "playwright test",
     "lint": "eslint src",
     "format": "eslint src --fix"
   },
   "dependencies": {
     "@playwright/test": "1.40.0",
-    "discord.js": "14.14.1",
-    "dotenv": "16.3.1",
+    "discord-api-types": "0.37.63",
     "zod": "3.22.4"
   },
   "devDependencies": {
     "@leomotors/config": "0.11.0",
     "@trivago/prettier-plugin-sort-imports": "4.3.0",
+    "dotenv-cli": "7.3.0",
     "eslint": "8.54.0",
     "prettier": "3.1.0"
   },

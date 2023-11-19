@@ -1,52 +1,54 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Routes } from "discord-api-types/v10";
 
 import { env } from "./env";
 
-async function createDiscordClient() {
-  const client = new Client({ intents: [GatewayIntentBits.GuildMessages] });
-  const promise = new Promise<Client<true>>((resolve) => {
-    client.once("ready", async (cli) => {
-      await cli.channels.fetch(env.CHANNEL_ID);
-      resolve(cli);
-    });
-  });
-
-  client.login(env.DISCORD_TOKEN);
-
-  return await promise;
-}
-
-const clientPromise = createDiscordClient();
-
-async function getChannel() {
-  const client = await clientPromise;
-
-  const channel = client.channels.cache.get(env.CHANNEL_ID);
-
-  if (!channel) {
-    throw new Error("Channel not found");
-  }
-
-  if (!channel.isTextBased()) {
-    throw new Error("Channel is not text based");
-  }
-
-  return channel;
-}
-
-// fuck chatgpt
-export async function sendImage(content: string, imagePath: string) {
-  const channel = await getChannel();
-
-  await channel.send({ content, files: [imagePath] });
-}
+const endpoint = "https://discord.com/api/v10";
 
 export async function sendMessage(content: string) {
-  const channel = await getChannel();
+  console.log("Sending image to discord...");
 
-  await channel.send({ content });
+  const res = await fetch(endpoint + Routes.channelMessages(env.CHANNEL_ID), {
+    method: "POST",
+    headers: {
+      Authorization: `Bot ${env.DISCORD_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ content }),
+  });
+
+  if (!res.ok) {
+    console.error(`Discord API Failed ${res.status} ${res.statusText}`);
+    // not gonna print res.text() on production since the log is public
+    if (process.env.DEV === "frfr") {
+      console.error(await res.text());
+    }
+  }
 }
 
-process.on("SIGTERM", async () => {
-  (await clientPromise).destroy();
-});
+export async function sendImage(
+  content: string,
+  fileName: string,
+  buffer: Buffer,
+) {
+  console.log(`Sending image with size of ${buffer.length} to Discord...`);
+
+  const formData = new FormData();
+  formData.append("content", content);
+  formData.append("files", new Blob([buffer]), fileName);
+
+  const res = await fetch(endpoint + Routes.channelMessages(env.CHANNEL_ID), {
+    method: "POST",
+    headers: {
+      Authorization: `Bot ${env.DISCORD_TOKEN}`,
+    },
+    body: formData,
+  });
+
+  if (!res.ok) {
+    console.error(`Discord API Failed ${res.status} ${res.statusText}`);
+    // not gonna print res.text() on production since the log is public
+    if (process.env.DEV === "frfr") {
+      console.error(await res.text());
+    }
+  }
+}

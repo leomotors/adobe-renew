@@ -6,9 +6,13 @@ import { addZero } from "./utils";
 
 test.afterEach(async ({ page }, testInfo) => {
   if (testInfo.status !== testInfo.expectedStatus) {
-    await page.screenshot({ path: "screenshot/failure.png", timeout: 5000 });
+    const failure = await page.screenshot({ timeout: 5000 });
 
-    await sendImage("Failure", "screenshot/failure.png");
+    await sendImage(
+      "# :warning: FAILURE <:__mafuyuspook:1175812481373962331>",
+      "failure.png",
+      failure,
+    );
   }
 });
 
@@ -25,8 +29,12 @@ test("Automation", async ({ page }) => {
   await expect(page.getByRole("heading", { name: env.USERNAME })).toBeVisible();
 
   // Login Success
-  await page.screenshot({ path: "screenshot/2-after-login.png" });
-  await sendImage("Login Success", "screenshot/2-after-login.png");
+  const afterLogin = await page.screenshot();
+  await sendImage(
+    "## Login Success :white_check_mark:",
+    "login-success.png",
+    afterLogin,
+  );
 
   // Borrow
   await page.getByRole("link", { name: "Borrow" }).click();
@@ -51,11 +59,17 @@ test("Automation", async ({ page }) => {
   await page.getByRole("link", { name: targetDay }).click();
   await page.getByRole("button", { name: "OK" }).click();
 
-  await page.screenshot({ path: "screenshot/3-before-borrow.png" });
-  await sendImage("Before Borrow", "screenshot/3-before-borrow.png");
+  const beforeBorrow = await page.screenshot();
+  await sendImage(
+    "## Before Borrow <:trollface:1107361263824142366>",
+    "before-borrow.png",
+    beforeBorrow,
+  );
 
   await page.getByRole("button", { name: "Save" }).click();
 
-  await page.screenshot({ path: "screenshot/4-after-borrow.png" });
-  await sendImage("After Borrow", "screenshot/4-after-borrow.png");
+  const afterBorrow = await page.screenshot();
+  await sendImage("## After Borrow :tada:", "after-borrow.png", afterBorrow);
+
+  expect(page.getByRole("heading", { name: "History" })).toBeInViewport();
 });
