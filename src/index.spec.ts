@@ -71,5 +71,5 @@ test("Automation", async ({ page }) => {
   const afterBorrow = await page.screenshot();
   await sendImage("## After Borrow :tada:", "after-borrow.png", afterBorrow);
 
-  expect(page.getByRole("heading", { name: "History" })).toBeInViewport();
+  await expect(page.getByRole("heading", { name: "History" })).toBeInViewport();
 });

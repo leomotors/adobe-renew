@@ -5,7 +5,7 @@ import { env } from "./env";
 const endpoint = "https://discord.com/api/v10";
 
 export async function sendMessage(content: string) {
-  console.log("Sending image to discord...");
+  console.log("Sending message to discord...");
 
   const res = await fetch(endpoint + Routes.channelMessages(env.CHANNEL_ID), {
     method: "POST",
@@ -30,7 +30,7 @@ export async function sendImage(
   fileName: string,
   buffer: Buffer,
 ) {
-  console.log(`Sending image with size of ${buffer.length} to Discord...`);
+  console.log(`Sending message and image with size of ${buffer.length} to Discord...`);
 
   const formData = new FormData();
   formData.append("content", content);
