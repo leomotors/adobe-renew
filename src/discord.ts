@@ -30,7 +30,9 @@ export async function sendImage(
   fileName: string,
   buffer: Buffer,
 ) {
-  console.log(`Sending message and image with size of ${buffer.length} to Discord...`);
+  console.log(
+    `Sending message and image with size of ${buffer.length} to Discord...`,
+  );
 
   const formData = new FormData();
   formData.append("content", content);
