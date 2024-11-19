@@ -37,11 +37,16 @@ test("Automation", async ({ page }) => {
   );
 
   // Borrow
-  await page.getByRole("link", { name: "Borrow" }).click();
+  await page.getByRole("link", { name: " Borrow" }).click();
 
   await expect(page.getByRole("heading", { name: "Borrow" })).toBeInViewport();
 
   await page.locator("#ProgramLicenseID").selectOption("5");
+
+  // Wait for it to load
+  await expect(page.getByText("Avaliable Count:")).toBeInViewport({
+    timeout: 5000,
+  });
 
   // Select End Date
   await page.locator("#ExpiryDateStr").click();
