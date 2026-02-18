@@ -9,17 +9,16 @@
     "format": "eslint src --fix"
   },
   "dependencies": {
-    "@playwright/test": "^1.49.0",
-    "discord-api-types": "^0.37.105",
-    "zod": "^3.23.8"
+    "@playwright/test": "^1.58.2",
+    "discord-api-types": "^0.38.39",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@leomotors/config": "^0.11.0",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/node": "^22.9.0",
-    "dotenv-cli": "^7.4.2",
-    "eslint": "^8.57.1",
-    "prettier": "^3.3.3"
+    "@leomotors/config": "^1.1.0",
+    "@types/node": "^24.10.13",
+    "dotenv-cli": "^11.0.0",
+    "eslint": "^10.0.0",
+    "prettier": "^3.8.1"
   },
-  "packageManager": "pnpm@9.13.2"
+  "packageManager": "pnpm@10.29.3"
 }

@@ -3,8 +3,8 @@ name: Renew
 on:
   workflow_dispatch:
   schedule:
-    # Every Tuesday at 5:30 (+7)
-    - cron: "30 22 * * 1"
+    # Every Tuesday at 3:00 (+7)
+    - cron: "0 20 * * 1"
 
 jobs:
   renew:
@@ -19,13 +19,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
 
       - name: Setup node with cache
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: ".nvmrc"
           cache: pnpm

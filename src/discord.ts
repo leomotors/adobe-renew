@@ -36,7 +36,7 @@ export async function sendImage(
 
   const formData = new FormData();
   formData.append("content", content);
-  formData.append("files", new Blob([buffer]), fileName);
+  formData.append("files", new Blob([new Uint8Array(buffer)]), fileName);
 
   const res = await fetch(endpoint + Routes.channelMessages(env.CHANNEL_ID), {
     method: "POST",

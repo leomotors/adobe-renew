@@ -52,10 +52,10 @@ test("Automation", async ({ page }) => {
   await page.locator("#ExpiryDateStr").click();
 
   const today = new Date();
-  const next7days = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+  const next6Days = new Date(today.getTime() + 6 * 24 * 60 * 60 * 1000);
 
-  const targetDay = addZero(next7days.getDate());
-  const isSameMonth = next7days.getMonth() === today.getMonth();
+  const targetDay = addZero(next6Days.getDate());
+  const isSameMonth = next6Days.getMonth() === today.getMonth();
 
   if (!isSameMonth) {
     await page.getByRole("link", { name: "" }).first().click();
